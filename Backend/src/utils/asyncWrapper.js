@@ -1,3 +1,5 @@
+const ApiResponse = require("./apiRes");
+
 const asyncWrapper = (fn)=>{
     return async (req,res,next)=>{
         try {
@@ -7,10 +9,7 @@ const asyncWrapper = (fn)=>{
 
             if(res.headersSent) return;
             
-            res.status(500).json({
-                success:false,
-                message:"Something went wrong."
-            })
+            next(error)
         }
     }
 }
