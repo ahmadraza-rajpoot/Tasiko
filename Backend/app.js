@@ -6,9 +6,11 @@ const ApiError = require('./src/utils/apiError')
 const { globalError } = require('./src/utils/globalError')
 const {connectDB} = require('./src/db/connectDB')
 const { configDotenv } = require('dotenv')
+const userRouter = require('./src/routers/userRouter')
 const app = express()
 
-
+app.use(express.json())
+app.use('/api/user', userRouter)
 
 app.get("/", asyncWrapper((req, res)=>{
     throw new ApiError(500, "This is not working...")
